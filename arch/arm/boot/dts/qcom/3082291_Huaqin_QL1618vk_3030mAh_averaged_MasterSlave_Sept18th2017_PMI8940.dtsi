@@ -1,0 +1,53 @@
+
+qcom,3082291_huaqin_ql1618vk_3030mah_averaged_masterslave_sept18th2017 {
+	/* #3082291_Huaqin_QL1618vk_3030mAh_averaged_MasterSlave_Sept18th2017*/
+	qcom,max-voltage-uv = <4400000>;
+	qcom,nom-batt-capacity-mah = <3030>;
+	qcom,batt-id-kohm = <39>;
+	qcom,battery-beta = <3435>;
+	qcom,battery-type = "3082291_huaqin_ql1618vk_3030mah";
+	qcom,thermal-coefficients = [DA 86 F0 50 08 3C];
+	qcom,chg-rslow-comp-c1 = <3253220>;
+	qcom,chg-rslow-comp-c2 = <4492872>;
+	qcom,chg-rs-to-rslow = <802789>;
+	qcom,chg-rslow-comp-thr = <0xA3>;
+	qcom,fastchg-current-ma = <2000>;
+	qcom,fg-cc-cv-threshold-mv = <4390>;
+	qcom,checksum = <0xB598>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.16";
+	qcom,fg-profile-data = [
+		 F9 83 C6 7D
+		 D3 81 5E 7C
+		 60 83 8B 6D
+		 16 88 6A 8E
+		 1B 82 06 9A
+		 DF BC 59 C9
+		 5C 0F 05 88
+		 F7 7D EA 81
+		 6A 7C 57 83
+		 DF 63 35 7B
+		 BD 87 3C 82
+		 30 9A 8F BD
+		 C6 CA 5A 0D
+		 DB 0B 98 60
+		 14 70 AC FD
+		 35 2F 95 44
+		 FE 1A 00 00
+		 2A 47 6D 07
+		 07 39 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 DD 6B 4B 69
+		 1E 87 4F 82
+		 1F 7D 2C 72
+		 40 77 CE 78
+		 A5 76 B7 6A
+		 1F 49 4F A2
+		 21 AC 5A 89
+		 5C A0 71 0C
+		 28 00 FF 36
+		 F0 11 30 03
+		 00 00 00 0C
+	];
+};
+

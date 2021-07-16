@@ -1,0 +1,243 @@
+/*
+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "skeleton64.dtsi"
+#include "msm8953.dtsi"
+#include "msm8953-pinctrl.dtsi"
+#include "msm8953-mdss-panels.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. SDM450";
+	compatible = "qcom,sdm450";
+	qcom,msm-id = <338 0x0>;
+	interrupt-parent = <&intc>;
+
+	soc: soc { };
+};
+&i2c_3{
+	status = "ok";
+	focaltech@38 { /*ft5436 temporary*/
+			compatible = "focaltech,fts";
+			reg = <0x38>;
+			status = "ok";
+			interrupt-parent = <&tlmm>;
+			interrupts = <65 0x02>;
+			vdd-supply = <&pm8953_l10>;
+			vcc_i2c-supply = <&pm8953_l6>;
+			focaltech,reset-gpio = <&tlmm 64 0x0>;
+			focaltech,irq-gpio = <&tlmm 65 0x2002>;
+			focaltech,max-touch-number = <10>;
+			focaltech,display-coords =  <0 0 720 1440>;
+			focaltech,panel-coords = <0 0 720 1440>;
+			//focaltech,have-key;
+			focaltech,key-number = <3>;
+			focaltech,keys = <158 102 139>;
+			focaltech,key-y-coord = <2030>;
+			focaltech,key-x-coords = <160 360 570>;
+		};
+//huaqin add by xudongfang for goodix TP at 2018/3/1 start
+		goodix_ts@5d {
+			compatible = "goodix,gt9xx";
+			reg = <0x5d>;
+			status = "ok";
+			interrupt-parent = <&tlmm>;
+			interrupts = <65 0x02>;
+			vdd_ana-supply = <&pm8953_l10>;
+			vcc_i2c-supply = <&pm8953_l6>;
+			goodix,rst-gpio = <&tlmm 64 0x00>;
+			goodix,irq-gpio = <&tlmm 65 0x2008>;
+			pinctrl-names = "pmx_ts_active",
+						"pmx_ts_suspend",
+						"pmx_ts_release";
+			pinctrl-0 = <&ts_int_active &ts_reset_active>;
+			pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+			pinctrl-2 = <&ts_release>;
+			goodix,cfg-group0 = [
+						4A D0 02 A0 05 0A FC 32 11 8F 2F
+				        0F 5F 4B 03 05 00 00 60 62 01 12
+				        05 16 19 1F 14 C7 27 EE 3C 3E B8
+				        08 B8 08 00 C3 33 91 00 00 00 00
+				        00 02 C0 08 0A 00 1A 28 50 8A 90
+				        54 19 28 00 04 AA 2A 00 97 31 00
+				        8A 38 00 7E 41 00 75 4A 00 75 00
+				        00 00 00 00 00 00 00 00 00 00 43
+				        00 00 00 00 00 00 00 02 00 00 0F
+				        32 00 03 00 00 32 05 55 00 00 00
+				        00 41 0D 00 01 02 03 04 05 06 07
+				        08 09 0A 0B 0C 1B 1A 19 18 17 16
+				        15 14 13 12 11 10 0F 0E FF FF 00
+				        02 04 05 06 08 0A 1E 1F 20 22 24
+				        29 2A FF FF FF 8C 31 3C 3C 00 8C
+				        70 12 00 32 4B 5A 19 1E 3C 0F 00
+				        06 66 66 0F 10 8B 84 85 00 00 00
+				        00 00 00 00 00 00 00 00 00 32 2D
+				        00 00 0F 14 00 37 5A 00 78 78 95
+				        00 55 00 41 43 E0 00 5A 32 08 00
+				        00 00 00 00 00 00 8A 01];
+             goodix,cfg-group2 = [
+						46 D0 02 A0 05 0A FC 38 11 8F 37
+						0F 50 32 03 05 00 00 60 62 11 14
+						05 14 19 1E 14 87 A7 EE 4A 4C 0F
+						0A 00 00 00 BA 33 91 00 00 00 00
+						00 02 C4 14 32 00 1A 3C 58 8A F0
+						F7 07 50 00 04 92 3E 00 8D 43 00
+						86 48 00 81 4E 00 7D 54 00 7D 00
+						00 00 00 00 00 00 00 00 00 00 00
+						00 00 00 00 00 00 00 02 00 00 0F
+						32 00 03 00 00 32 06 55 00 00 00
+						00 41 04 13 00 1B 1A 19 18 17 16
+						15 14 01 02 03 10 0F 0E 0D 0C 11
+						12 0B 0A 09 08 07 06 05 FF FF 00
+						02 04 05 06 08 0A 1E 1F 20 22 24
+						29 2A FF FF FF 8C 31 3C 3C 00 8C
+						70 12 00 C8 A0 A0 00 1E 3C 0F 00
+						06 66 66 0F 10 86 85 56 00 00 00
+						00 00 00 00 00 00 00 00 00 32 28
+						00 00 0F 14 78 21 69 00 78 78 95
+						32 03 C5 00 00 00 00 96 00 00 64
+						C8 A2 46 78 00 01 27 01];
+		};
+//huaqin add by xudongfang for goodix TP at 2018/3/1 end
+};
+&clock_gcc_gfx {
+	compatible = "qcom,gcc-gfx-sdm450";
+	qcom,gfxfreq-corner =
+		<         0   0 >,
+		< 133330000   1 >,  /* Min SVS   */
+		< 216000000   2 >,  /* Low SVS   */
+		< 320000000   3 >,  /* SVS       */
+		< 400000000   4 >,  /* SVS Plus  */
+		< 510000000   5 >,  /* NOM       */
+		< 560000000   6 >,  /* Nom Plus  */
+		< 600000000   7 >;  /* Turbo     */
+};
+
+&mdss_mdp {
+	qcom,mdss-pref-prim-intf = "dsi";
+};
+
+&mdss_dsi {
+	hw-config = "single_dsi";
+};
+
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_ili9881c_720x1440_video>;
+	pinctrl-names = "mdss_default", "mdss_sleep";
+	pinctrl-0 = <&mdss_dsi_active &mdss_te_active>;
+	pinctrl-1 = <&mdss_dsi_suspend &mdss_te_suspend>;
+
+	qcom,platform-te-gpio = <&tlmm 24 0>;
+	qcom,platform-reset-gpio = <&tlmm 61 0>;
+//	qcom,platform-bklight-en-gpio = <&tlmm 59 0>;
+};
+
+&mdss_dsi1 {
+	status = "disabled";
+	qcom,dsi-pref-prim-pan = <&dsi_adv7533_1080p>;
+	pinctrl-names = "mdss_default", "mdss_sleep";
+	pinctrl-0 = <&mdss_dsi_active &mdss_te_active>;
+	pinctrl-1 = <&mdss_dsi_suspend &mdss_te_suspend>;
+
+	qcom,pluggable;
+	qcom,platform-te-gpio = <&tlmm 24 0>;
+	qcom,platform-reset-gpio = <&tlmm 61 0>;
+//	qcom,platform-bklight-en-gpio = <&tlmm 59 0>;
+};
+&dsi_ili9881c_720x1440_video_dj{
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+&dsi_ili9881c_720x1440_video{
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+/* GPU Overrides*/
+&msm_gpu {
+
+	/delete-node/qcom,gpu-pwrlevels;
+
+	qcom,gpu-pwrlevels {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		compatible = "qcom,gpu-pwrlevels";
+
+		/* TURBO */
+		qcom,gpu-pwrlevel@0 {
+			reg = <0>;
+			qcom,gpu-freq = <600000000>;
+			qcom,bus-freq = <10>;
+			qcom,bus-min = <10>;
+			qcom,bus-max = <10>;
+		};
+
+		/* NOM+ */
+		qcom,gpu-pwrlevel@1 {
+			reg = <1>;
+			qcom,gpu-freq = <560000000>;
+			qcom,bus-freq = <10>;
+			qcom,bus-min = <8>;
+			qcom,bus-max = <10>;
+		};
+
+		/* NOM */
+		qcom,gpu-pwrlevel@2 {
+			reg = <2>;
+			qcom,gpu-freq = <510000000>;
+			qcom,bus-freq = <9>;
+			qcom,bus-min = <6>;
+			qcom,bus-max = <10>;
+		};
+
+		/* SVS+ */
+		qcom,gpu-pwrlevel@3 {
+			reg = <3>;
+			qcom,gpu-freq = <400000000>;
+			qcom,bus-freq = <7>;
+			qcom,bus-min = <5>;
+			qcom,bus-max = <8>;
+		};
+
+		/* SVS */
+		qcom,gpu-pwrlevel@4 {
+			reg = <4>;
+			qcom,gpu-freq = <320000000>;
+			qcom,bus-freq = <4>;
+			qcom,bus-min = <2>;
+			qcom,bus-max = <6>;
+		};
+
+		/* Low SVS */
+		qcom,gpu-pwrlevel@5 {
+			reg = <5>;
+			qcom,gpu-freq = <216000000>;
+			qcom,bus-freq = <1>;
+			qcom,bus-min = <1>;
+			qcom,bus-max = <4>;
+		};
+
+		/* Min SVS */
+		qcom,gpu-pwrlevel@6 {
+			reg = <6>;
+			qcom,gpu-freq = <133300000>;
+			qcom,bus-freq = <1>;
+			qcom,bus-min = <1>;
+			qcom,bus-max = <4>;
+		};
+		/* XO */
+		qcom,gpu-pwrlevel@7 {
+			reg = <7>;
+			qcom,gpu-freq = <19200000>;
+			qcom,bus-freq = <0>;
+			qcom,bus-min = <0>;
+		};
+	};
+};

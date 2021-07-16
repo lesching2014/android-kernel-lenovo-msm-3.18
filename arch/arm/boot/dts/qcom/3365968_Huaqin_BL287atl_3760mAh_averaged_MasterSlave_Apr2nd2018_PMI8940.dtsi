@@ -1,0 +1,51 @@
+
+qcom,3365968_huaqin_bl287atl_3760mah_averaged_masterslave_apr2nd2018 {
+	/* #3365968_Huaqin_BL287atl_3760mAh_averaged_MasterSlave_Apr2nd2018*/
+	qcom,max-voltage-uv = <4400000>;
+	qcom,nom-batt-capacity-mah = <3760>;
+	qcom,batt-id-kohm = <47>;
+	qcom,battery-beta = <3380>;
+	qcom,battery-type = "3365968_huaqin_bl287atl_3760mah_averaged_masterslave_apr2nd2018";
+	qcom,chg-rslow-comp-c1 = <3113979>;
+	qcom,chg-rslow-comp-c2 = <3694974>;
+	qcom,chg-rs-to-rslow = <947546>;
+	qcom,chg-rslow-comp-thr = <0x99>;
+	qcom,fg-cc-cv-threshold-mv = <4390>;
+	qcom,checksum = <0xECB4>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.16";
+	qcom,fg-profile-data = [
+		 A6 83 52 74
+		 5F 79 EE 67
+		 3B 83 C3 73
+		 93 84 53 81
+		 EC 81 2A A0
+		 30 C4 C0 D1
+		 6A 0F DD 83
+		 EF 77 1C 80
+		 E2 74 31 83
+		 1A 7A 3B 8C
+		 A0 88 21 82
+		 F1 9B 83 C4
+		 17 D3 66 0D
+		 06 0F 6F 5A
+		 14 70 29 FD
+		 DB 44 70 3E
+		 8A 43 00 00
+		 11 47 22 40
+		 5F 30 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 0F 6B CF 69
+		 F3 72 5E 89
+		 76 74 6C 68
+		 DF 5C 79 79
+		 96 6E 00 62
+		 BC 7C 9F A0
+		 1D 84 61 7F
+		 5E A0 71 0C
+		 28 00 FF 36
+		 F0 11 30 03
+		 00 00 00 0C
+	];
+};
+

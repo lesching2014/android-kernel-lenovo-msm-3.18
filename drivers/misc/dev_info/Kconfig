@@ -1,0 +1,4 @@
+config HQ_DEV_INFO
+	bool "Huaqin dev info support"
+	help
+	  Show phone all dev info

@@ -1,0 +1,10 @@
+#
+# GT9XX Touchscreen driver configuration
+#
+
+config TOUCHSCREEN_GT9_I2C
+        bool "GT9XX chipset i2c touchscreen"
+		depends on TOUCHSCREEN_GT917D_ZQL1657
+		help
+		This enables support for GT9XX CHIPSET over I2C based touchscreens.
+

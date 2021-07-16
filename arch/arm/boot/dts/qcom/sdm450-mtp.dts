@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+#include "sdm450.dtsi"
+#include "msm-pmi8940.dtsi"
+#include "msm8953-mtp.dtsi"
+#include "msm8953-pmi8940.dtsi"
+#include "msm8953-camera-sensor-mtp.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. SDM450 + PMI8940 MTP";
+	compatible = "qcom,sdm450-mtp", "qcom,sdm450", "qcom,mtp";
+	qcom,board-id= <8 0>;
+	qcom,pmic-id = <0x010016 0x20011 0x0 0x0>;
+};
+
+/{
+	mtp_batterydata: qcom,battery-data {
+		qcom,batt-id-range-pct = <15>;
+		#include "3073638_Huaqin_QL1618atl_3030mAh_averaged_MasterSlave_Sept5th2017_PMI8940.dtsi"
+		#include "batterydata-qrd-sku1-4v4-3000mah_new_HQ.dtsi"
+//LENOVO add by tianye at 2018/04/03 For Platform & lenovo ROM start
+		#include "3365968_Huaqin_BL287atl_3760mAh_averaged_MasterSlave_Apr2nd2018_PMI8940.dtsi"
+//LENOVO add by tianye at 2018/04/03 For Platform & lenovo ROM end
+	};
+};
+
+&pmi8940_fg {
+	qcom,battery-data = <&mtp_batterydata>;
+};
+
+&pmi8940_charger {
+	qcom,battery-data = <&mtp_batterydata>;
+	qcom,external-typec;
+	qcom,typec-psy-name = "typec";
+};
+
+&usb3{
+       qcom,usbin-vadc = <&pmi8940_vadc>;
+};
+
+&pmi_haptic {
+	status = "ok";
+	qcom,actuator-type = "erm";
+};
+&soc {
+	gpio-leds {
+		compatible    = "gpio-leds";
+
+		red {
+			gpios = <&tlmm 25 0>;
+			label = "red";
+			linux,default-trigger = "none";
+			default-state = "off";
+			retain-state-suspended;
+		};
+
+		green {
+			gpios = <&tlmm 23 0>;
+			label = "green";
+			linux,default-trigger = "none";
+			default-state = "off";
+			retain-state-suspended;
+		};
+	};
+};
+
