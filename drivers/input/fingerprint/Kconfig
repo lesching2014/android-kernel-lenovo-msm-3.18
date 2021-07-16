@@ -1,0 +1,24 @@
+menuconfig INPUT_FINGERPRINT
+	bool "Fingerprint"
+	help
+	  Say Y here, and a list of supported fingerprint will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if INPUT_TOUCHSCREEN
+
+config CDFINGER_FP
+	bool "CDFINGER_FP for Qualcomm package"
+	help
+	  Say Y here if you have a cdfinger fingerprint.
+
+          If unsure, say N.
+#Huaqin modify for silead driver by zhaojunhai1 at 2018/03/02 start
+config SLSPI_DRIVER
+	tristate "Silead FP spi deriver"
+	default y
+	help
+		support for IPC
+#Huaqin modify for silead driver by zhaojunhai1 at 2018/03/02 end
+endif
