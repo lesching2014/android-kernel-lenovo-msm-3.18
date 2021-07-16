@@ -270,7 +270,8 @@ dtb-$(CONFIG_ARCH_MSM8953) += msm8953-sim.dtb \
 	msm8953-pmi8940-ext-codec-mtp.dtb \
 	msm8953-pmi8937-ext-codec-mtp.dtb
 
-dtb-$(CONFIG_ARCH_SDM450) += sdm450-rcm.dtb \
+dtb-$(CONFIG_ARCH_SDM450) += sdm450-austin2018-mtp.dtb \
+	sdm450-rcm.dtb \
 	sdm450-cdp.dtb \
 	sdm450-mtp.dtb \
 	sdm450-qrd.dtb \
